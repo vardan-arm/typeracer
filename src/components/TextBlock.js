@@ -7,14 +7,7 @@ export const TextBlock = (props) => {
 
     return (
         <div>
-            <header>
-                <h1>Typeracer</h1>
-                <h3>
-                    Check how fast you can type
-                </h3>
-            </header>
-            <h4>Input this text</h4>
-            {props.textToType}
+            {props.originalText}
         </div>
     );
 };

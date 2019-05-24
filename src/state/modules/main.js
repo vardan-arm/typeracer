@@ -1,12 +1,15 @@
 import {
     GET_TEXT_SUCCESS,
-    GET_TEXT_FAILURE
+    GET_TEXT_FAILURE,
+    HANDLE_TEXT_CHANGE
 } from "../actionCreators/main";
 
 const initialState = {
-    textToType: '',
+    originalText: '',
+    caretPositionInOriginalText: 0,
     error: '',
     shouldGetNewText: true,
+    writtenText: ''
 };
 
 export const reducer = (state = initialState, action) => {
@@ -14,7 +17,7 @@ export const reducer = (state = initialState, action) => {
         case GET_TEXT_SUCCESS:
             return {
                 ...state,
-                textToType: action.payload.text,
+                originalText: action.payload.text,
                 shouldGetNewText: false,
             };
         case GET_TEXT_FAILURE:
@@ -22,6 +25,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload.message,
                 shouldGetNewText: false,
+            };
+        case HANDLE_TEXT_CHANGE:
+            return {
+                ...state,
+                writtenText: action.payload.writtenText
             };
         default:
             return state;

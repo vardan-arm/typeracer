@@ -3,7 +3,8 @@ import {getText} from "../state/thunks";
 import {TextBlock} from "./TextBlock";
 
 const mapStateToProps = state => ({
-    textToType: state.main.textToType,
+    originalText: state.main.originalText,
+    writtenText: state.main.writtenText,
     shouldGetNewText: state.main.shouldGetNewText
 });
 

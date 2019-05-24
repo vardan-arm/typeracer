@@ -7,15 +7,16 @@ const InputWrapper = styled('div')`
     width: 400px;
 `;
 
-export const TextInput = () => {
+export const TextInput = (props) => {
     return (
         <InputWrapper>
             <Input
-                onChange={(e) => console.log('changed', e.target.value)}
+                fullWidth
+                autoFocus
                 placeholder="Type the above text here when the race begins"
                 label="Name"
                 variant="outlined"
-                fullWidth
+                onChange={(e) => props.onHandleTextChange(e.target.value)}
             />
         </InputWrapper>
     );
