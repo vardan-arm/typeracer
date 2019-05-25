@@ -68,7 +68,7 @@ export const TextInput = (props) => {
     return (
         <InputWrapperStyled>
             <InputStyled
-                placeholder="Type the above text here when the race begins"
+                placeholder="Type the text here..."
                 className={inputExtraClass}
                 onKeyDown={(e) => {
                     handleChange(e, props.originalText);

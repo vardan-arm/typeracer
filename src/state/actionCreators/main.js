@@ -1,6 +1,7 @@
 export const GET_TEXT_SUCCESS = 'GET_TEXT_SUCCESS';
 export const GET_TEXT_FAILURE = 'GET_TEXT_FAILURE';
 export const HANDLE_TEXT_CHANGE = 'HANDLE_TEXT_CHANGE';
+export const CALCULATE_WPM = 'CALCULATE_WPM';
 
 // Actions are created using FSA approach (see more at https://github.com/redux-utilities/flux-standard-action)
 export const doGetTextSuccess = text => ({
@@ -21,5 +22,12 @@ export const doHandleTextChange = ({writtenText, wrongInput}) => ({
     payload: {
         writtenText,
         wrongInput
+    }
+});
+
+export const doCalculateWPM = (secondsPassed) => ({
+    type: CALCULATE_WPM,
+    payload: {
+        secondsPassed
     }
 });

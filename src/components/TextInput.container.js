@@ -11,7 +11,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onHandleTextChange: ({writtenText, wrongInput}) => {
-        console.log({writtenText});
         dispatch(doHandleTextChange({
             writtenText,
             wrongInput

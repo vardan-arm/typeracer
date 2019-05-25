@@ -2,6 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {TextBlockContainer} from './components/TextBlock.container';
 import {TextInputContainer} from "./components/TextInput.container";
+import {CountDownContainer} from "./components/CountDown.container";
+import {ResultsContainer} from "./components/Results.container";
 
 const AppWrapperStyled = styled('div')`
     margin-left: 24px;
@@ -27,12 +29,13 @@ const App = () => {
             <header>
                 <h1>Typeracer</h1>
                 <h3>
-                    Check how fast you can type
+                    Check your typing skills
                 </h3>
             </header>
-
-            <h4>Input this text</h4>
+            <h4>Type the text below:</h4>
+            <CountDownContainer duration={20} />
             <TextBlockContainer/>
+            <ResultsContainer />
             <TextInputContainer/>
         </AppWrapperStyled>
     );

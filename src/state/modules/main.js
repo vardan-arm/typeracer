@@ -1,7 +1,7 @@
 import {
     GET_TEXT_SUCCESS,
     GET_TEXT_FAILURE,
-    HANDLE_TEXT_CHANGE
+    HANDLE_TEXT_CHANGE, CALCULATE_WPM
 } from "../actionCreators/main";
 
 const initialState = {
@@ -9,7 +9,8 @@ const initialState = {
     caretPositionInOriginalText: 0,
     error: '',
     shouldGetNewText: true,
-    writtenText: ''
+    writtenText: '',
+    wpm: 0
 };
 
 export const reducer = (state = initialState, action) => {
@@ -34,6 +35,14 @@ export const reducer = (state = initialState, action) => {
                 writtenText,
                 wrongInput,
                 caretPositionInOriginalText: wrongInput ? caretPositionInOriginalText : caretPositionInOriginalText + 1
+            };
+        case CALCULATE_WPM:
+            const typedWordsNumber = state.caretPositionInOriginalText / 5;
+            const wordsPerSecond = typedWordsNumber / action.payload.secondsPassed;
+
+            return {
+                ...state,
+                wpm: parseInt(wordsPerSecond * 60)
             };
         default:
             return state;
