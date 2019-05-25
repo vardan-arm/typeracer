@@ -16,9 +16,10 @@ export const doGetTextFailure = error => ({
     error: true
 });
 
-export const doHandleTextChange = ({wrongInput}) => ({
+export const doHandleTextChange = ({writtenText, wrongInput}) => ({
     type: HANDLE_TEXT_CHANGE,
     payload: {
+        writtenText,
         wrongInput
     }
 });

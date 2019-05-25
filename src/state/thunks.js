@@ -13,7 +13,7 @@ export const getText = () => dispatch => {
     axios.get('https://baconipsum.com/api/?callback=?', {
         params: {
             type: 'all-meat',
-            paras: 1
+            sentences: 5
         }
     })
         .then(function (response) {

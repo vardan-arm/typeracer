@@ -3,9 +3,14 @@ import styled from '@emotion/styled';
 import {TextBlockContainer} from './components/TextBlock.container';
 import {TextInputContainer} from "./components/TextInput.container";
 
-const AppStyled = styled('div')`
+const AppWrapperStyled = styled('div')`
     margin-left: 24px;
     margin-right: 24px;
+    
+    border: 1px solid gray;
+    padding: 0px 16px;
+    border-radius: 12px;
+    background-color: lightcyan;
     
     & * {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -18,17 +23,18 @@ const AppStyled = styled('div')`
 
 const App = () => {
     return (
-        <AppStyled>
+        <AppWrapperStyled>
             <header>
                 <h1>Typeracer</h1>
                 <h3>
                     Check how fast you can type
                 </h3>
             </header>
+
             <h4>Input this text</h4>
             <TextBlockContainer/>
             <TextInputContainer/>
-        </AppStyled>
+        </AppWrapperStyled>
     );
 };
 

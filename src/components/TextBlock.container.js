@@ -5,7 +5,8 @@ import {TextBlock} from "./TextBlock";
 const mapStateToProps = state => ({
     originalText: state.main.originalText,
     writtenText: state.main.writtenText,
-    shouldGetNewText: state.main.shouldGetNewText
+    shouldGetNewText: state.main.shouldGetNewText,
+    caretPositionInOriginalText: state.main.caretPositionInOriginalText,
 });
 
 const mapDispatchToProps = dispatch => ({

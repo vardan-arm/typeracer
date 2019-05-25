@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 import {css} from "emotion";
 
 const InputWrapperStyled = styled('div')`
-    margin-top: 16px;
-    width: 400px;
+    width: 50%;
+    margin: 32px auto 24px;
 `;
 
 const InputStyled = styled('input')`
@@ -44,7 +44,7 @@ export const TextInput = (props) => {
         const writtenCharacter = event.key;
 
         // Don't react to "Shift"-like inputs
-        if (['Shift', 'Control', 'Meta', 'Alt'].includes(writtenCharacter)) {
+        if (['Shift', 'Control', 'Meta', 'Alt', 'Backspace', 'Escape'].includes(writtenCharacter)) {
             event.preventDefault();
             return false;
         }
@@ -54,7 +54,13 @@ export const TextInput = (props) => {
             event.preventDefault();
         }
 
+        const writtenText = writtenCharacter === ' '
+            ? ''
+            : wrongInput ?
+                event.target.value : event.target.value + writtenCharacter;
+
         props.onHandleTextChange({
+            writtenText,
             wrongInput
         });
     };
@@ -67,6 +73,9 @@ export const TextInput = (props) => {
                 onKeyDown={(e) => {
                     handleChange(e, props.originalText);
                 }}
+                onChange={() => {
+                }}
+                value={props.writtenText}
             />
         </InputWrapperStyled>
     );
