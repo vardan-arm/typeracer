@@ -27,9 +27,13 @@ export const reducer = (state = initialState, action) => {
                 shouldGetNewText: false,
             };
         case HANDLE_TEXT_CHANGE:
+            const { caretPositionInOriginalText } = state;
+            const { writtenText, wrongInput } = action.payload;
             return {
                 ...state,
-                writtenText: action.payload.writtenText
+                writtenText,
+                wrongInput,
+                caretPositionInOriginalText: wrongInput ? caretPositionInOriginalText : caretPositionInOriginalText + 1
             };
         default:
             return state;
