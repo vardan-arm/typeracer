@@ -1,17 +1,40 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
 
 import styled from '@emotion/styled';
 import {css} from "emotion";
 
-const InputWrapper = styled('div')`
+const InputWrapperStyled = styled('div')`
     margin-top: 16px;
     width: 400px;
 `;
 
+const InputStyled = styled('input')`
+    line-height: 40px;
+    font-size: 20px;
+    width: 100%;
+    border: #c4c4c4 1px solid;
+    border-radius: 6px;
+    padding: 5px 9px;
+    outline: none;
+    color: #2b2b2b;
+    
+    &:hover {
+        border-color: #545454;
+        transition: border-color 0.3s ease;
+    }
+    &:not(:hover) {
+        border-color: #c4c4c4;
+        transition: border-color 0.3s ease;
+    }
+    &:focus {
+        border-color: darkgoldenrod;
+    }
+    &::placeholder {
+        color: rgba(0,0,0,0.3);
+    }
+`;
+
 const wrongClass = css`
-    border-color: red;
-    color: red;
     background: #ffd1bf;
 `;
 
@@ -37,19 +60,14 @@ export const TextInput = (props) => {
     };
 
     return (
-        <InputWrapper>
-            <TextField
-                className={inputExtraClass}
-                // borderColor="text.primary"
-                fullWidth
-                autoFocus
+        <InputWrapperStyled>
+            <InputStyled
                 placeholder="Type the above text here when the race begins"
-                label="Your text"
-                variant="outlined"
+                className={inputExtraClass}
                 onKeyDown={(e) => {
                     handleChange(e, props.originalText);
                 }}
             />
-        </InputWrapper>
+        </InputWrapperStyled>
     );
 };
