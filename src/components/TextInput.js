@@ -17,7 +17,6 @@ const wrongClass = css`
 
 export const TextInput = (props) => {
     const inputExtraClass = props.wrongInput ? wrongClass : '';
-console.log({inputExtraClass});
     const handleChange = (event, originalText) => {
         const writtenCharacter = event.key;
 
