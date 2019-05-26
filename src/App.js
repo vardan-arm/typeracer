@@ -34,7 +34,7 @@ const App = () => {
                 </h3>
             </header>
             <h4>Type the text below:</h4>
-            <CountDownContainer duration={20} />
+            <CountDownContainer duration={1} />
             <TextBlockContainer/>
             <WPMInfoContainer />
             <TextInputContainer/>
