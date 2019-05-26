@@ -9,6 +9,7 @@ const ButtonWrapperStyled = styled('div')`
 
 export const StartButton = (props) => {
     const { requestInProgress, onSetStartTyping } = props;
+
     return (
                 <ButtonWrapperStyled>
                     <BootstrapButton

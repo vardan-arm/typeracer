@@ -7,6 +7,7 @@ import {WPMInfoContainer} from "./components/WPMInfo.container";
 import {ResultsSectionContainer} from './components/ResultsSection.container';
 import {SettingsContainer} from "./components/Settings.container";
 import {TryAgainContainer} from "./components/TryAgain.container";
+import {HistorySectionContainer} from "./components/History/HistorySection.container";
 
 const AppWrapperStyled = styled('div')`
     margin-left: 24px;
@@ -48,6 +49,7 @@ export const App = (props) => {
                 <TextInputContainer/>
                 <TryAgainContainer />
                 <ResultsSectionContainer/>
+                {!props.typingAllowed && <HistorySectionContainer />}
             </BodyStyled>
         </AppWrapperStyled>
     );

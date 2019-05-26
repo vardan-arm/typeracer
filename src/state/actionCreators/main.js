@@ -7,6 +7,8 @@ export const TIME_IS_UP = 'TIME_IS_UP';
 export const SET_TYPING_ALLOWED = 'SET_TYPING_ALLOWED';
 export const SET_TRY_AGAIN = 'SET_TRY_AGAIN';
 export const SET_DURATION = 'SET_DURATION';
+export const SET_SHOW_HISTORY_ITEMS_SECTION = 'SET_SHOW_HISTORY_ITEMS_SECTION';
+export const SET_HISTORY_DATA = 'SET_HISTORY_DATA';
 
 // Actions are created using FSA approach (see more at https://github.com/redux-utilities/flux-standard-action)
 export const doSetRequestInProgress = requestInProgress => ({
@@ -64,4 +66,18 @@ export const doSetDuration = duration => ({
 
 export const doSetTryAgain = () => ({
     type: SET_TRY_AGAIN
+});
+
+export const doSetShowHistoryItemsSection = showHistoryItemsSection => ({
+    type: SET_SHOW_HISTORY_ITEMS_SECTION,
+    payload: {
+        showHistoryItemsSection
+    }
+});
+
+export const doSetHistoryData = historyItems => ({
+    type: SET_HISTORY_DATA,
+    payload: {
+        historyItems
+    }
 });

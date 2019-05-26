@@ -14,7 +14,7 @@ export const Settings = props => {
     const [writingDuration, setWritingDuration] = useState(duration);
 
     const validateInput = (inputValue) => {
-        const validatedValue = inputValue > minDuration && inputValue <= maxDuration ? inputValue : duration;
+        const validatedValue = inputValue >= minDuration && inputValue <= maxDuration ? inputValue : duration;
         setWritingDuration(validatedValue);
 
         // Save in store

@@ -8,6 +8,8 @@ import {
     SET_TYPING_ALLOWED,
     SET_TRY_AGAIN,
     SET_DURATION,
+    SET_SHOW_HISTORY_ITEMS_SECTION,
+    SET_HISTORY_DATA,
 } from "../actionCreators/main";
 import {defaultDuration} from "../../components/constants";
 
@@ -23,7 +25,9 @@ const initialState = {
     wpm: 0,
     completionPercent: 0,
     showResults: false,
-    duration: defaultDuration
+    duration: defaultDuration,
+    showHistoryItemsSection: false,
+    historyItems: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -75,7 +79,8 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 typingAllowed: action.payload.typingAllowed,
-                showSettingsSection: !action.payload.typingAllowed
+                showSettingsSection: !action.payload.typingAllowed,
+                historyItems: []
             };
         case SET_DURATION:
             return {
@@ -93,6 +98,16 @@ export const reducer = (state = initialState, action) => {
                 wpm: 0,
                 completionPercent: 0,
                 wrongInput: false,
+            };
+        case SET_SHOW_HISTORY_ITEMS_SECTION:
+            return {
+                ...state,
+                showHistoryItemsSection: action.payload.showHistoryItemsSection
+            };
+        case SET_HISTORY_DATA:
+            return {
+                ...state,
+                historyItems: action.payload.historyItems
             };
         default:
             return state;

@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 
 const ResultsStyled = styled('div')`
     padding-bottom: 30px;
+    display: flex;
 `;
 
 const DetailsSectionStyled = styled('div')`
-    width: 40%;
     margin: 0 auto;
 `;
 
@@ -34,7 +34,7 @@ export const ResultsSection = props => {
         <div>
             {showResults && (
                 <ResultsStyled>
-                    <DetailsSectionStyled>
+                    <DetailsSectionStyled data-name="display-section">
                         <DetailsSectionItemStyled>
                             <ResultHeader>Speed:</ResultHeader>
                             <ResultDetails>{wpm} wpm</ResultDetails>

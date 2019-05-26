@@ -1,5 +1,11 @@
 import axios from "axios";
-import {doGetTextFailure, doGetTextSuccess, doSetRequestInProgress} from "./actionCreators/main";
+import {
+    doGetTextFailure,
+    doGetTextSuccess,
+    doSetHistoryData,
+    doSetRequestInProgress,
+    doSetShowHistoryItemsSection
+} from "./actionCreators/main";
 
 const handleGetTextSuccess = (dispatch, text) => {
     dispatch(doGetTextSuccess(text.join()));
@@ -8,10 +14,6 @@ const handleGetTextSuccess = (dispatch, text) => {
 const handleGetTextFailure = (dispatch, error) => {
     dispatch(doGetTextFailure(error));
 };
-
-// const handleSaveHistorySuccess = (dispatch, jsonId) => {
-//     dispatch()
-// }
 
 export const getText = () => dispatch => {
     dispatch(doSetRequestInProgress(true));
@@ -32,7 +34,7 @@ export const getText = () => dispatch => {
 
 export const saveHistory = () => (dispatch, getState) => {
     const currentState = getState();
-    const { completionPercent, wpm } = currentState.main;
+    const {completionPercent, wpm} = currentState.main;
     const date = new Date();
 
     dispatch(doSetRequestInProgress(true));
@@ -47,11 +49,34 @@ export const saveHistory = () => (dispatch, getState) => {
         }
     })
         .then(response => {
-            console.log('save history RESPONSE', response.data);
+            const typeracerHistory = localStorage.getItem('typeracerHistoryURLs');
+            let historyURLs = typeracerHistory !== null ? JSON.parse(typeracerHistory) : [];
+            historyURLs.push(response.data);
+
+            localStorage.setItem('typeracerHistoryURLs', JSON.stringify(historyURLs));
+
             dispatch(doSetRequestInProgress(false));
+            dispatch(doSetShowHistoryItemsSection(true));
         })
         .catch(error => {
-            console.log('save history ERROR', error);
+            console.warn('Save history error: ', error);
             dispatch(doSetRequestInProgress(false));
         })
+};
+
+export const getHistoryItems = historyURLs => dispatch => {
+    if (historyURLs.length) {
+        const historyURLsPromises = historyURLs.map(historyURLItem =>
+            axios.get(historyURLItem));
+
+        Promise.all(historyURLsPromises)
+            .then(data => {
+                const historyItems = [];
+                data.map(item => historyItems.push(item.data.params.data));
+                dispatch(doSetHistoryData(historyItems.reverse()));
+            })
+            .catch(error => {
+                console.warn('Get History error: ', error);
+            });
+    }
 };
