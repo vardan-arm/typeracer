@@ -27,7 +27,6 @@ export const ResultsSection = props => {
         showResults,
         wpm,
         completionPercent,
-        duration
     } = props;
 
     return (
@@ -42,10 +41,6 @@ export const ResultsSection = props => {
                         <DetailsSectionItemStyled>
                             <ResultHeader>Completed:</ResultHeader>
                             <ResultDetails>{completionPercent}%</ResultDetails>
-                        </DetailsSectionItemStyled>
-                        <DetailsSectionItemStyled>
-                            <ResultHeader>Duration:</ResultHeader>
-                            <ResultDetails>{duration} seconds</ResultDetails>
                         </DetailsSectionItemStyled>
                     </DetailsSectionStyled>
                 </ResultsStyled>)}

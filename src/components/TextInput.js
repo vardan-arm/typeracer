@@ -68,7 +68,9 @@ export const TextInput = (props) => {
 
         onHandleTextChange({
             writtenText,
-            wrongInput
+            wrongInput,
+            caretPositionInOriginalText,
+            originalText
         });
     };
 

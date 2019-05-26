@@ -68,13 +68,15 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 wpm: parseInt(wordsPerSecond * 60)
             };
-        case TIME_IS_UP:
+        case TIME_IS_UP: {
             return {
                 ...state,
                 showResults: true,
                 typingAllowed: false,
-                completionPercent: (state.caretPositionInOriginalText / state.originalText.length * 100).toFixed(1)
+                completionPercent: action.payload.textFinished ? 100 :
+                    (state.caretPositionInOriginalText / state.originalText.length * 100).toFixed(1)
             };
+        }
         case SET_TYPING_ALLOWED:
             return {
                 ...state,

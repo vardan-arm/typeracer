@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import {TextInput} from "./TextInput";
-import {doHandleTextChange} from "../state/actionCreators/main";
+import {doHandleTextChange, doHandleTimeIsUp} from "../state/actionCreators/main";
+import {saveHistory} from "../state/thunks";
 
 const mapStateToProps = state => ({
     originalText: state.main.originalText,
@@ -11,11 +12,16 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onHandleTextChange: ({writtenText, wrongInput}) => {
-        dispatch(doHandleTextChange({
-            writtenText,
-            wrongInput
-        }));
+    onHandleTextChange: ({writtenText, wrongInput, caretPositionInOriginalText, originalText}) => {
+        if (caretPositionInOriginalText !== originalText.length - 1 || wrongInput) {
+            dispatch(doHandleTextChange({
+                writtenText,
+                wrongInput
+            }));
+        } else {
+            dispatch(doHandleTimeIsUp(true));
+            dispatch(saveHistory());
+        }
     }
 });
 

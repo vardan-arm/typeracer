@@ -46,8 +46,11 @@ export const doCalculateWPM = (secondsPassed) => ({
     }
 });
 
-export const doHandleTimeIsUp = () => ({
-    type: TIME_IS_UP
+export const doHandleTimeIsUp = (textFinished) => ({
+    type: TIME_IS_UP,
+    payload: {
+        textFinished
+    }
 });
 
 export const doSetTypingAllowed = typingAllowed => ({
