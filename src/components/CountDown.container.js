@@ -4,7 +4,8 @@ import {doCalculateWPM, doHandleTimeIsUp} from "../state/actionCreators/main";
 import {saveHistory} from "../state/thunks";
 
 const mapStateToProps = state => ({
-    typingAllowed: state.main.typingAllowed
+    typingAllowed: state.main.typingAllowed,
+    duration: state.main.duration
 });
 
 const mapDispatchToProps = dispatch => ({

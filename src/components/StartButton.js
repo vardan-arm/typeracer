@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import styled from "@emotion/styled";
+import {BootstrapButton} from "./BoostrapButton";
 
 const ButtonWrapperStyled = styled('div')`
     margin-top: 16px;
@@ -8,17 +8,19 @@ const ButtonWrapperStyled = styled('div')`
 `;
 
 export const StartButton = (props) => {
+    const { requestInProgress, onSetStartTyping } = props;
     return (
                 <ButtonWrapperStyled>
-                    <Button
-                        variant="outlined"
-                        color="primary"
+                    <BootstrapButton
+                        variant="contained"
+                        color="secondary"
+                        disabled={requestInProgress}
                         onClick={() => {
-                            props.onSetStartTyping(true);
+                            onSetStartTyping(true);
                         }}
                     >
-                        Let's Start
-                    </Button>
+                        Start
+                    </BootstrapButton>
                 </ButtonWrapperStyled>
     );
 };

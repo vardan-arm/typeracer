@@ -5,7 +5,8 @@ export const HANDLE_TEXT_CHANGE = 'HANDLE_TEXT_CHANGE';
 export const CALCULATE_WPM = 'CALCULATE_WPM';
 export const TIME_IS_UP = 'TIME_IS_UP';
 export const SET_TYPING_ALLOWED = 'SET_TYPING_ALLOWED';
-export const SET_PARAMS_AND_START = 'SET_PARAMS_AND_START';
+export const SET_TRY_AGAIN = 'SET_TRY_AGAIN';
+export const SET_DURATION = 'SET_DURATION';
 
 // Actions are created using FSA approach (see more at https://github.com/redux-utilities/flux-standard-action)
 export const doSetRequestInProgress = requestInProgress => ({
@@ -54,9 +55,13 @@ export const doSetTypingAllowed = typingAllowed => ({
     }
 });
 
-export const doSetParamsAndStart = duration => ({
-    type: SET_PARAMS_AND_START,
+export const doSetDuration = duration => ({
+    type: SET_DURATION,
     payload: {
         duration
     }
+});
+
+export const doSetTryAgain = () => ({
+    type: SET_TRY_AGAIN
 });

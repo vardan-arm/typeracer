@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import { Settings } from './Settings';
-import {doSetParamsAndStart} from "../state/actionCreators/main";
+import {doSetDuration} from "../state/actionCreators/main";
 
 const mapStateToProps = state => ({
     duration: state.main.duration,
-    typingAllowed: state.main.typingAllowed
+    showSettingsSection: state.main.showSettingsSection
 });
 
 const mapDispatchToProps = dispatch => ({
-    onSetParamsAndStart: duration => {
-        dispatch(doSetParamsAndStart(duration));
+    onSetDuration: duration => {
+        dispatch(doSetDuration(duration));
     }
 });
 

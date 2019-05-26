@@ -6,10 +6,13 @@ import {
     CALCULATE_WPM,
     TIME_IS_UP,
     SET_TYPING_ALLOWED,
-    SET_PARAMS_AND_START,
+    SET_TRY_AGAIN,
+    SET_DURATION,
 } from "../actionCreators/main";
+import {defaultDuration} from "../../components/constants";
 
 const initialState = {
+    showSettingsSection: true,
     requestInProgress: false,
     typingAllowed: false,
     originalText: '',
@@ -20,7 +23,7 @@ const initialState = {
     wpm: 0,
     completionPercent: 0,
     showResults: false,
-    duration: 120 // seconds
+    duration: defaultDuration
 };
 
 export const reducer = (state = initialState, action) => {
@@ -71,12 +74,25 @@ export const reducer = (state = initialState, action) => {
         case SET_TYPING_ALLOWED:
             return {
                 ...state,
-                typingAllowed: action.payload.typingAllowed
+                typingAllowed: action.payload.typingAllowed,
+                showSettingsSection: !action.payload.typingAllowed
             };
-        case SET_PARAMS_AND_START:
+        case SET_DURATION:
             return {
                 ...state,
                 duration: action.payload.duration
+            };
+        case SET_TRY_AGAIN:
+            return {
+                ...state,
+                showSettingsSection: true,
+                showResults: false,
+                shouldGetNewText: true,
+                caretPositionInOriginalText: 0,
+                writtenText: '',
+                wpm: 0,
+                completionPercent: 0,
+                wrongInput: false,
             };
         default:
             return state;

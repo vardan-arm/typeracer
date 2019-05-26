@@ -19,7 +19,6 @@ export const CountDown = (props) => {
     } = props;
 
     useEffect(() => {
-        // TODO: `duration` will come from store, update this later
         let timer = duration;
 
         const intervalId = setInterval(() => {

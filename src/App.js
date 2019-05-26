@@ -6,6 +6,7 @@ import {CountDownContainer} from "./components/CountDown.container";
 import {WPMInfoContainer} from "./components/WPMInfo.container";
 import {ResultsSectionContainer} from './components/ResultsSection.container';
 import {SettingsContainer} from "./components/Settings.container";
+import {TryAgainContainer} from "./components/TryAgain.container";
 
 const AppWrapperStyled = styled('div')`
     margin-left: 24px;
@@ -45,6 +46,7 @@ export const App = (props) => {
                 <WPMInfoContainer/>
                 <SettingsContainer />
                 <TextInputContainer/>
+                <TryAgainContainer />
                 <ResultsSectionContainer/>
             </BodyStyled>
         </AppWrapperStyled>

@@ -18,10 +18,13 @@ const RemainingTextStyled = styled('span')`
 `;
 
 export const TextBlock = (props) => {
-    const { onGetText } = props;
+    const { onGetText, shouldGetNewText } = props;
+
     useEffect(() => {
-        onGetText();
-    }, [onGetText]);
+        if (shouldGetNewText) {
+            onGetText();
+        }
+    }, [onGetText, shouldGetNewText]);
 
     const { originalText, caretPositionInOriginalText } = props;
     const correctTextPortion = originalText.substring(0, caretPositionInOriginalText);

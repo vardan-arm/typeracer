@@ -3,7 +3,8 @@ import {doSetTypingAllowed} from "../state/actionCreators/main";
 import {StartButton} from "./StartButton";
 
 const mapStateToProps = state => ({
-    typingAllowed: state.main.typingAllowed
+    typingAllowed: state.main.typingAllowed,
+    requestInProgress: state.main.requestInProgress,
 });
 
 const mapDispatchToProps = dispatch => ({
