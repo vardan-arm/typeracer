@@ -3,7 +3,7 @@ import {WPMInfo} from "./WPMInfo";
 
 const mapStateToProps = state => ({
     wpm: state.main.wpm,
-    showResults: state.main.showResults
+    typingAllowed: state.main.typingAllowed
 });
 
 export const WPMInfoContainer = connect(mapStateToProps)(WPMInfo);

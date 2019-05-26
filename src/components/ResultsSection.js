@@ -2,12 +2,12 @@ import React from 'react';
 import styled from "@emotion/styled";
 
 const ResultsStyled = styled('div')`
-    min-height: 80px;
     padding-bottom: 30px;
 `;
 
 const DetailsSectionStyled = styled('div')`
-    margin-left: 370px;
+    width: 40%;
+    margin: 0 auto;
 `;
 
 const DetailsSectionItemStyled = styled('div')`
@@ -23,7 +23,12 @@ const ResultDetails = styled('span')`
     font-weight: bold;
 `;
 export const ResultsSection = props => {
-    const {showResults, wpm, completionPercent} = props;
+    const {
+        showResults,
+        wpm,
+        completionPercent,
+        duration
+    } = props;
 
     return (
         <div>
@@ -39,8 +44,8 @@ export const ResultsSection = props => {
                             <ResultDetails>{completionPercent}%</ResultDetails>
                         </DetailsSectionItemStyled>
                         <DetailsSectionItemStyled>
-                            <ResultHeader>Time:</ResultHeader>
-                            <ResultDetails>duration (comes from store)</ResultDetails>
+                            <ResultHeader>Duration:</ResultHeader>
+                            <ResultDetails>{duration} seconds</ResultDetails>
                         </DetailsSectionItemStyled>
                     </DetailsSectionStyled>
                 </ResultsStyled>)}

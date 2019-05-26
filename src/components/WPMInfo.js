@@ -8,10 +8,10 @@ const WPMWrapperStyled = styled('div')`
 }
 `;
 export const WPMInfo = (props) => {
-    const {showResults, wpm} = props;
+    const {typingAllowed, wpm} = props;
     return (
         <div>
-            {!showResults && <WPMWrapperStyled>{wpm} wpm</WPMWrapperStyled>}
+            {typingAllowed && <WPMWrapperStyled>{wpm} wpm</WPMWrapperStyled>}
         </div>
     );
 };

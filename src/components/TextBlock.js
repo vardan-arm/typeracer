@@ -2,14 +2,11 @@ import React, {useEffect} from 'react';
 import styled from "@emotion/styled";
 
 const TextBlockStyled = styled('div')`
-    // width: 800px;
-    // margin-left: 10px;
     border: 2px solid darkgreen;
     border-radius: 6px;
     padding: 8px 16px;
     font-size: 22px;
     background-color: azure;
-    min-height: 110px;
 `;
 
 const PassedTextStyled = styled('span')`
@@ -21,9 +18,10 @@ const RemainingTextStyled = styled('span')`
 `;
 
 export const TextBlock = (props) => {
+    const { onGetText } = props;
     useEffect(() => {
-        props.onGetText();
-    }, []);
+        onGetText();
+    }, [onGetText]);
 
     const { originalText, caretPositionInOriginalText } = props;
     const correctTextPortion = originalText.substring(0, caretPositionInOriginalText);

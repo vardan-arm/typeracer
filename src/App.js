@@ -4,7 +4,8 @@ import {TextBlockContainer} from './components/TextBlock.container';
 import {TextInputContainer} from "./components/TextInput.container";
 import {CountDownContainer} from "./components/CountDown.container";
 import {WPMInfoContainer} from "./components/WPMInfo.container";
-import { ResultsSectionContainer } from './components/ResultsSection.container';
+import {ResultsSectionContainer} from './components/ResultsSection.container';
+import {SettingsContainer} from "./components/Settings.container";
 
 const AppWrapperStyled = styled('div')`
     margin-left: 24px;
@@ -24,7 +25,11 @@ const AppWrapperStyled = styled('div')`
     }
 `;
 
-const App = () => {
+const BodyStyled = styled('div')`
+    min-height: 400px;
+`;
+
+export const App = (props) => {
     return (
         <AppWrapperStyled>
             <header>
@@ -33,14 +38,15 @@ const App = () => {
                     Check your typing skills
                 </h3>
             </header>
-            <h4>Type the text below:</h4>
-            <CountDownContainer duration={1} />
-            <TextBlockContainer/>
-            <WPMInfoContainer />
-            <TextInputContainer/>
-            <ResultsSectionContainer />
+            <BodyStyled>
+                <h4>Type the text below:</h4>
+                {props.typingAllowed && <CountDownContainer duration={5}/>}
+                <TextBlockContainer/>
+                <WPMInfoContainer/>
+                <SettingsContainer />
+                <TextInputContainer/>
+                <ResultsSectionContainer/>
+            </BodyStyled>
         </AppWrapperStyled>
     );
 };
-
-export default App;

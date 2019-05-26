@@ -3,6 +3,10 @@ import {CountDown} from "./CountDown";
 import {doCalculateWPM, doHandleTimeIsUp} from "../state/actionCreators/main";
 import {saveHistory} from "../state/thunks";
 
+const mapStateToProps = state => ({
+    typingAllowed: state.main.typingAllowed
+});
+
 const mapDispatchToProps = dispatch => ({
     onCalculateWPM: (secondsPassed) => {
         dispatch(doCalculateWPM(secondsPassed));
@@ -14,4 +18,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export const CountDownContainer = connect(null, mapDispatchToProps)(CountDown);
+export const CountDownContainer = connect(mapStateToProps, mapDispatchToProps)(CountDown);

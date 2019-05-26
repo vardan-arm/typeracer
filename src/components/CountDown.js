@@ -8,12 +8,17 @@ const CountDownStyled = styled('div')`
 `;
 
 export const CountDown = (props) => {
-    const [showCountDown, setShowCountDown] = useState(false);
+    const [countDownStarted, setCountDownStarted] = useState(false);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
 
+    const {
+        duration,
+        onHandleTimeIsUp,
+        onCalculateWPM
+    } = props;
+
     useEffect(() => {
-        const {duration, onHandleTimeIsUp, onCalculateWPM} = props;
         // TODO: `duration` will come from store, update this later
         let timer = duration;
 
@@ -21,7 +26,7 @@ export const CountDown = (props) => {
             const seconds = parseInt(timer % 60, 10);
             setMinutes(parseInt(timer / 60));
             setSeconds(seconds < 10 ? `0${seconds}` : seconds);
-            setShowCountDown(true);
+            setCountDownStarted(true);
 
             if (--timer < 0) {
                 clearInterval(intervalId);
@@ -34,16 +39,16 @@ export const CountDown = (props) => {
             }
         }, 1000);
 
-        // Cleanup the effect
+        // Cleanup the hook
         return () => {
             clearInterval(intervalId);
         }
-    }, []);
+    }, [duration, onHandleTimeIsUp, onCalculateWPM]);
 
     return (
         <div>
             {
-                showCountDown && (
+                countDownStarted && (
                     <CountDownStyled>
                         {minutes}:{seconds}
                     </CountDownStyled>

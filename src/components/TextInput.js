@@ -5,7 +5,7 @@ import {css} from "emotion";
 
 const InputWrapperStyled = styled('div')`
     width: 50%;
-    margin: 32px auto 24px;
+    margin: 32px auto 0;
 `;
 
 const InputStyled = styled('input')`
@@ -40,7 +40,13 @@ const wrongClass = css`
 `;
 
 export const TextInput = (props) => {
-    const inputExtraClass = props.wrongInput ? wrongClass : '';
+    const {
+        typingAllowed,
+        wrongInput,
+        caretPositionInOriginalText,
+        onHandleTextChange,
+    } = props;
+    const inputExtraClass = wrongInput ? wrongClass : '';
     const handleChange = (event, originalText) => {
         const writtenCharacter = event.key;
 
@@ -50,7 +56,7 @@ export const TextInput = (props) => {
             return false;
         }
 
-        const wrongInput = originalText.substring(props.caretPositionInOriginalText, props.caretPositionInOriginalText + 1) !== writtenCharacter;
+        const wrongInput = originalText.substring(caretPositionInOriginalText, caretPositionInOriginalText + 1) !== writtenCharacter;
         if (wrongInput) {
             event.preventDefault();
         }
@@ -60,24 +66,27 @@ export const TextInput = (props) => {
             : wrongInput ?
                 event.target.value : event.target.value + writtenCharacter;
 
-        props.onHandleTextChange({
+        onHandleTextChange({
             writtenText,
             wrongInput
         });
     };
 
     return (
-        <InputWrapperStyled>
-            {!props.showResults && <InputStyled
-                placeholder="Type the text here..."
-                className={inputExtraClass}
-                onKeyDown={(e) => {
-                    handleChange(e, props.originalText);
-                }}
-                onChange={() => {
-                }}
-                value={props.writtenText}
-            />}
-        </InputWrapperStyled>
+        <div>
+            <InputWrapperStyled>
+                {typingAllowed && <InputStyled
+                    autoFocus
+                    placeholder="Type the text here..."
+                    className={inputExtraClass}
+                    onKeyDown={(e) => {
+                        handleChange(e, props.originalText);
+                    }}
+                    onChange={() => {
+                    }}
+                    value={props.writtenText}
+                />}
+            </InputWrapperStyled>
+        </div>
     );
 };

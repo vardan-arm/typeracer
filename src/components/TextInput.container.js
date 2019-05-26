@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
     wrongInput: state.main.wrongInput,
     caretPositionInOriginalText: state.main.caretPositionInOriginalText,
     writtenText: state.main.writtenText,
-    showResults: state.main.showResults
+    typingAllowed: state.main.typingAllowed,
 });
 
 const mapDispatchToProps = dispatch => ({

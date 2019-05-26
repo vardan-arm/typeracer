@@ -5,10 +5,13 @@ import {
     HANDLE_TEXT_CHANGE,
     CALCULATE_WPM,
     TIME_IS_UP,
+    SET_TYPING_ALLOWED,
+    SET_PARAMS_AND_START,
 } from "../actionCreators/main";
 
 const initialState = {
     requestInProgress: false,
+    typingAllowed: false,
     originalText: '',
     caretPositionInOriginalText: 0,
     error: '',
@@ -16,7 +19,8 @@ const initialState = {
     writtenText: '',
     wpm: 0,
     completionPercent: 0,
-    showResults: false
+    showResults: false,
+    duration: 120 // seconds
 };
 
 export const reducer = (state = initialState, action) => {
@@ -41,8 +45,8 @@ export const reducer = (state = initialState, action) => {
                 requestInProgress: false,
             };
         case HANDLE_TEXT_CHANGE:
-            const { caretPositionInOriginalText } = state;
-            const { writtenText, wrongInput } = action.payload;
+            const {caretPositionInOriginalText} = state;
+            const {writtenText, wrongInput} = action.payload;
             return {
                 ...state,
                 writtenText,
@@ -61,7 +65,18 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 showResults: true,
+                typingAllowed: false,
                 completionPercent: (state.caretPositionInOriginalText / state.originalText.length * 100).toFixed(1)
+            };
+        case SET_TYPING_ALLOWED:
+            return {
+                ...state,
+                typingAllowed: action.payload.typingAllowed
+            };
+        case SET_PARAMS_AND_START:
+            return {
+                ...state,
+                duration: action.payload.duration
             };
         default:
             return state;
