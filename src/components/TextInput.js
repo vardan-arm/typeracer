@@ -15,6 +15,7 @@ const InputStyled = styled('input')`
     border: #c4c4c4 1px solid;
     border-radius: 6px;
     padding: 5px 9px;
+    margin-bottom: 34px;
     outline: none;
     color: #2b2b2b;
     
@@ -67,7 +68,7 @@ export const TextInput = (props) => {
 
     return (
         <InputWrapperStyled>
-            <InputStyled
+            {!props.showResults && <InputStyled
                 placeholder="Type the text here..."
                 className={inputExtraClass}
                 onKeyDown={(e) => {
@@ -76,7 +77,7 @@ export const TextInput = (props) => {
                 onChange={() => {
                 }}
                 value={props.writtenText}
-            />
+            />}
         </InputWrapperStyled>
     );
 };

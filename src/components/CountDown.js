@@ -12,8 +12,10 @@ export const CountDown = (props) => {
     const [seconds, setSeconds] = useState(0);
 
     useEffect(() => {
+        const { duration, onHandleTimeIsUp, onCalculateWPM } = props;
         // TODO: `duration` will come from store, update this later
-        let timer = props.duration;
+        let timer = duration;
+
         const intervalId = setInterval(() => {
             const seconds = parseInt(timer % 60, 10);
             setMinutes(parseInt(timer / 60));
@@ -21,11 +23,12 @@ export const CountDown = (props) => {
 
             if (--timer < 0) {
                 clearInterval(intervalId);
+                onHandleTimeIsUp();
             }
 
             // Calculate WPM every 3 seconds
             if (timer % 3 === 0) {
-                props.onCalculateWPM(props.duration - timer);
+                onCalculateWPM(duration - timer);
             }
         }, 1000);
 

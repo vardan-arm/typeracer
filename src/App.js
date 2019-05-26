@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 import {TextBlockContainer} from './components/TextBlock.container';
 import {TextInputContainer} from "./components/TextInput.container";
 import {CountDownContainer} from "./components/CountDown.container";
-import {ResultsContainer} from "./components/Results.container";
+import {WPMInfoContainer} from "./components/WPMInfo.container";
+import { ResultsSectionContainer } from './components/ResultsSection.container';
 
 const AppWrapperStyled = styled('div')`
     margin-left: 24px;
@@ -35,8 +36,9 @@ const App = () => {
             <h4>Type the text below:</h4>
             <CountDownContainer duration={20} />
             <TextBlockContainer/>
-            <ResultsContainer />
+            <WPMInfoContainer />
             <TextInputContainer/>
+            <ResultsSectionContainer />
         </AppWrapperStyled>
     );
 };

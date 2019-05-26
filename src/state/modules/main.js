@@ -1,7 +1,9 @@
 import {
     GET_TEXT_SUCCESS,
     GET_TEXT_FAILURE,
-    HANDLE_TEXT_CHANGE, CALCULATE_WPM
+    HANDLE_TEXT_CHANGE,
+    CALCULATE_WPM,
+    TIME_IS_UP,
 } from "../actionCreators/main";
 
 const initialState = {
@@ -10,7 +12,8 @@ const initialState = {
     error: '',
     shouldGetNewText: true,
     writtenText: '',
-    wpm: 0
+    wpm: 0,
+    showResults: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -43,6 +46,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 wpm: parseInt(wordsPerSecond * 60)
+            };
+        case TIME_IS_UP:
+            return {
+                ...state,
+                showResults: true
             };
         default:
             return state;
