@@ -3,6 +3,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Description
 Type provided text as fast as possible and see your results.
 
+## Demo
+https://mysterious-spire-97550.herokuapp.com/
+
 ## Available Scripts
 
 In the project directory, you can run:
